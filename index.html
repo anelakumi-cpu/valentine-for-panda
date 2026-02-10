@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For My Panda 🐼</title>
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f6efe7;
+    color: #4b3621;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: #fffaf3;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+button {
+    background: #8b5e3c;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button:hover {
+    background: #6f472b;
+}
+
+.option {
+    display: block;
+    margin: 8px 0;
+    width: 100%;
+}
+
+#noBtn {
+    position: absolute;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="app">
+    <h2>Hi Panda 🐼</h2>
+    <p>Can we get started?</p>
+    <button onclick="startQuiz()">Start 💫</button>
+</div>
+
+<script>
+let step = 0;
+
+const quiz = [
+{
+q: "What food we had on our first date?",
+options: ["Ice cream", "Kunafa", "Coffee"],
+answer: 1,
+correctMsg: "Wow 😍 Memory on point! I’m impressed 💕",
+wrongMsg: "HOW can you forget this 😤 Go think again!"
+},
+{
+q: "What was the first movie we watched together?",
+options: ["It ends with us", "Kalki", "Sweetheart"],
+answer: 0,
+correctMsg: "Okayyy 🥹 You do remember things!",
+wrongMsg: "ARE YOU SERIOUS RIGHT NOW 😡 I can’t believe this!!!"
+},
+{
+q: "Where was our first fight held?",
+options: ["Beach", "Kathipara", "Twist and Trails"],
+answer: 2,
+correctMsg: "Hmm… remembered even this 😌",
+wrongMsg: "Wow. Just wow. I’m offended 😤"
+},
+{
+q: "What we both love to do together?",
+options: ["Snooker", "Cafe hunting", "Movie"],
+answer: 0,
+correctMsg: "I know you were looking for Kasa Musa as an option 🙈😳",
+wrongMsg: "NOPE. Try again mister 😠"
+},
+{
+q: "When was our last meet?",
+options: ["Aug 1", "July 22", "Aug 5"],
+answer: 0,
+correctMsg: "Perfect 🥰 You passed!",
+wrongMsg: "You’re on thin ice now 😑"
+}
+];
+
+function startQuiz() {
+    step = 0;
+    showQuestion();
+}
+
+function showQuestion() {
+    const app = document.getElementById("app");
+    const q = quiz[step];
+
+    let html = `<h3>${q.q}</h3>`;
+    q.options.forEach((opt, i) => {
+        html += `<button class="option" onclick="checkAnswer(${i})">${opt}</button>`;
+    });
+
+    app.innerHTML = html;
+}
+
+function checkAnswer(i) {
+    const q = quiz[step];
+    if (i === q.answer) {
+        alert(q.correctMsg);
+        step++;
+        if (step < quiz.length) {
+            showQuestion();
+        } else {
+            showValentine();
+        }
+    } else {
+        alert(q.wrongMsg);
+    }
+}
+
+function showValentine() {
+    const app = document.getElementById("app");
+    app.innerHTML = `
+        <h2>Will you be my Valentine? 💌</h2>
+        <button onclick="alert('YAYYY 🥹❤️ I love you!')">YES 💖</button>
+        <button id="noBtn">NO ❌</button>
+    `;
+
+    const noBtn = document.getElementById("noBtn");
+    noBtn.addEventListener("mouseover", () => {
+        noBtn.style.left = Math.random() * 200 + "px";
+        noBtn.style.top = Math.random() * 200 + "px";
+    });
+}
+</script>
+
+</body>
+</html>

@@ -180,4 +180,20 @@ function closePopup() {
     }
 }
 
-function showV
+function showValentine() {
+    document.getElementById("app").innerHTML = `
+        <h2>Will you be my Valentine? 💌</h2>
+        <button onclick="showPopup('YAYYY 🥹❤️')">YES 💖</button>
+        <button id="noBtn">NO ❌</button>
+    `;
+
+    const noBtn = document.getElementById("noBtn");
+    noBtn.addEventListener("mouseover", () => {
+        noBtn.style.left = Math.random() * 200 + "px";
+        noBtn.style.top = Math.random() * 200 + "px";
+    });
+}
+</script>
+
+</body>
+</html>
